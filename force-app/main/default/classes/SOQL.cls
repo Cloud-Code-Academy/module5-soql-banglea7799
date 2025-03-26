@@ -16,20 +16,22 @@
  * Users of this class can expect to gain a solid understanding of SOQL in Apex and
  * be prepared to handle data retrieval tasks in Salesforce development.
  *
- * @author Your Name
+ * @author Blanche Anglea
  */
 
 public with sharing class SOQL {
-	/**
-	 * Question 1
-	 * Update/Uncomment the template code to create a method
-	 * Returns all leads from Salesforce Org
-	 * @return List of all leads with Id, LastName, Company, Phone, Email
-	 * Update the corresponding test class and testGetAllLeads method to cover this method
-	 */
-	//[public | private ] [static] data_type method_name (input parameters) {
-	//  The body of the method
-	//}
+	/** 
+	* Question 1
+	* Update/Uncomment the template code to create a method
+	* Returns all leads from Salesforce Org
+	* @return List of all leads with Id, LastName, Company, Phone, Email
+	* Update the corresponding test class and testGetAllLeads method to cover this method
+	*/
+   public static List<Lead> getAllLeads() {
+   //  The body of the method
+   List<Lead> getLeads = [SELECT Id, LastName, Company, Phone, Email FROM Lead];
+   return getLeads;
+   }
 
 	/**
 	 * Question 2
@@ -38,9 +40,11 @@ public with sharing class SOQL {
 	 * @return A list of Contact records.
 	 * Update the corresponding test class and testGetContactsByFirstName method to cover this method
 	 */
-	//[public | private ] [static] data_type method_name (input parameters) {
+	public static List<Contact> getJohnContacts() {
 	//  The body of the method
-	//}
+	List<Contact> getContacts = [SELECT Id, FirstName, LastName FROM Contact WHERE FirstName = 'John'];
+	return getContacts;
+	}
 
 	/**
 	 * Question 3
@@ -49,9 +53,15 @@ public with sharing class SOQL {
 	 * @return A list of Contact Ids.
 	 * Update the corresponding test class and testGetContactIdsByLastName method to cover this method
 	 */
-	//[public | private ] [static] data_type method_name (input parameters) {
+	public static List<Id> getContactIds() {
 	//  The body of the method
-	//}
+	List<Contact> contacts = [SELECT Id, FirstName, LastName FROM Contact WHERE LastName = 'Smith' OR LastName = 'Jones'];
+	List<Id> contactIds = new List<Id>();
+	for (Contact contact : contacts){
+		contactIds.add(contact.Id);
+	}
+	return contactIds;
+	}
 
 	/**
 	 * Question 4
